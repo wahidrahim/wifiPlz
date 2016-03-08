@@ -1,0 +1,24 @@
+{
+  "name": "wifiplz",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Wahid Rahim <wahidrahim@gmail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootswatch-dist": "slate"
+  },
+  "resolutions": {
+    "bootswatch-dist": "slate"
+  }
+}
