@@ -16,9 +16,9 @@
     "tests"
   ],
   "dependencies": {
-    "bootswatch-dist": "slate"
+    "bootswatch-dist": "superhero"
   },
   "resolutions": {
-    "bootswatch-dist": "slate"
+    "bootswatch-dist": "superhero"
   }
 }
