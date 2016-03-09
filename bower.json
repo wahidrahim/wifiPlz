@@ -16,9 +16,9 @@
     "tests"
   ],
   "dependencies": {
-    "bootswatch-dist": "superhero"
+    "bootswatch-dist": "cerulean"
   },
   "resolutions": {
-    "bootswatch-dist": "superhero"
+    "bootswatch-dist": "cerulean"
   }
 }

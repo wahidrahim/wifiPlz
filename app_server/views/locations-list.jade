@@ -1,54 +1,30 @@
 extends layout
 
+include includes/sharedHTMLfunctions
+
 block content
   #banner.page-header
     .row
       .col-lg-6
-        h1 wifiPlz
-          small &nbsp; find free wifi near you!
+        h1= pageHeader.title
+          small &nbsp; #{pageHeader.strapline}
 
   .row
     .col-xs-12.col-sm-8
       .row.list-group
-        .col-xs-12.list-group-item
-          h4
-            a(href='/location') StarCups
-            small &nbsp;
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star-empty
-            span.badge.pull-right.badge-default 100m
-          p.address 420 High Street, Waterloo, ON, M4G1P9
-          p
-            span.label.label-warning Hot beverages
-            &nbsp;
-            span.label.label-warning Food
-            &nbsp;
-            span.label.label-warning Premium wifi
-            &nbsp;
-        .col-xs-12.list-group-item
-          h4
-            a(href='/location') MarkDonalds
-            small &nbsp;
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star-empty
-              span.glyphicon.glyphicon-star-empty
-            span.badge.pull-right.badge-default 150m
-          p.address 123 Fake Street, Kitchener, ON, N2PM96
-          p
-            span.label.label-warning Fast food
-            &nbsp;
-            span.label.label-warning Hot beverages
-            &nbsp;
-            span.label.label-warning Premium wifi
-            &nbsp;
-    .col-xs-12.col-sm-4
-      p.lead wifiPlz helps you find free wifi when on the go.
 
-    
-  //-h1= title
-  //-p Welcome to #{title}
+        each location in locations
+          .col-xs-12.list-group-item
+            h4
+              a(href='/location')= location.name
+              small &nbsp;
+                +outputRating(location.rating)
+              span.badge.pull-right.badge-default= location.distance
+            p.address= location.address
+            p
+              each facility in location.facilities
+                span.label.label-warning= facility
+                &nbsp;
+
+    .col-xs-12.col-sm-4
+      p.lead= sidebar
