@@ -1,3 +1,11 @@
+var request = require('request');
+
+var apiOptions = {server: 'http://localhost:3000'}
+
+if (process.env.NODE_ENV === 'production') {
+  apiOptions.server = 'https://wifiplz.herokuapp.com';
+}
+
 /* GET 'home' page */
 module.exports.homeList = function(req, res) {
   res.render('locations-list',

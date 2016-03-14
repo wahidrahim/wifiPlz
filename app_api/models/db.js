@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var dbURI = 'mongodb://localhost/wifiplz'
+var dbURI = 'mongodb://localhost/wifiPlz'
 
 if (process.env.NODE_ENV === 'production')
   dbURI = process.env.MONGOLAB_URI
@@ -42,4 +42,4 @@ process.on('SIGTERM', function() {
   });
 });
 
-require('./locations');
+require('./location');
