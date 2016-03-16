@@ -30,7 +30,7 @@ var updateAverageRating = function(id) {
     });
 }
 
-var addReview = function(res, status, location) {
+var addReview = function(req, res, location) {
   if (!location)
     sendJSONresponse(res, 404, {message: 'Location not found'});
   else {
@@ -64,7 +64,7 @@ module.exports.reviewCreate = function(req, res) {
           sendJSONresponse(res, 400, err)
         }
         else {
-          addReview(res, 201, location);
+          addReview(req, res, location);
         }
       });
   }

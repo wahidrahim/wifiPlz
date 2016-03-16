@@ -27,6 +27,7 @@ var sendJSONresponse = function(res, status, content) {
 module.exports.locationsListByDistance = function(req, res) {
   var lng = parseFloat(req.query.lng);
   var lat = parseFloat(req.query.lat);
+  var maxDistance = parseFloat(req.query.maxDistance);
 
   if (!lng || !lat) {
     sendJSONresponse(res, 404, {message: 'lng and lat query parameters are required'});
@@ -41,8 +42,10 @@ module.exports.locationsListByDistance = function(req, res) {
   var geoOptions = {
     spherical: true,
     num: 10,
-    maxDistance: 25000 // meters
-      //maxDistance: theEarth.getRadsFromDist(25) // TODO get maxdistance from query string later
+    //maxDistance: (maxDistance) ? maxDistance : 50 * 1000 // 50km
+    //maxDistance: (maxDistance && maxDistance > 0) ? maxDistance : 25000
+    //maxDistance: 25000 // meters
+    //maxDistance: (maxDistance) ? theEarth.getRadsFromDist(maxDistance) : theEarth.getRadsFromDist(0) // TODO get maxdistance from query string later
   }
 
   Location.geoNear(point, geoOptions, function(err, docs) {
