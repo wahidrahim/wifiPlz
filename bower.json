@@ -17,7 +17,6 @@
   ],
   "dependencies": {
     "bootswatch-dist": "cosmo",
-    "angular": "^1.5.2",
-    "jquery-timeago": "timeago#^1.5.2"
+    "angular": "^1.5.2"
   }
 }
