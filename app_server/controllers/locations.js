@@ -26,17 +26,6 @@ var showError = function(req, res, status) {
 }
 
 var renderHomePage = function(req, res, resBody) {
-  var message;
-
-  if (!(resBody instanceof Array)) {
-    message = 'API lookup error';
-    resBody = [];
-  }
-  else {
-    if (!resBody.length) {
-      message = 'No places found nearby';
-    }
-  }
   res.render('locations-list', {
     title: 'wifiPlz - find a place to work with wifi',
     pageHeader: {
@@ -46,8 +35,6 @@ var renderHomePage = function(req, res, resBody) {
     sidebar: 'Looking for wifi and a seat? wifiPlz helps you find places to ' +
       'work when out and about. Perhaps with coffee, cake or a pint? ' +
       'Let wifiPlz help you find the place you\'re looking for.',
-    locations: resBody,
-    message: message
   });
 }
 
@@ -69,7 +56,8 @@ var renderReviewForm = function(req, res, location) {
   res.render('location-review-form', {
     title: 'Review ' + location.name + ' on wifiPlz',
     pageHeader: {title: 'Review ' + location.name},
-    error: req.query.err
+    error: req.query.err,
+    url: req.originalUrl
   });
 }
 
@@ -100,43 +88,7 @@ var getLocationInfo = function(req, res, callback) {
 
 /* GET 'home' page */
 module.exports.homeList = function(req, res) {
-  var path = '/api/locations';
-  var requestOptions = {
-    url: apiOptions.server + path,
-    method: 'GET',
-    json: {},
-    qs: {
-      lng: -0.7992599,
-      lat: 51.378091,
-      maxDistance: 25 * 1000
-    }
-  }
-
-  // FIXME distances are wrong
-  request(requestOptions, function(err, response, body) {
-    var data = body;
-    var formatDistance = function(dist) {
-      var numDist, unit;
-
-      if (dist > 1) {
-        numDist = parseFloat(dist).toFixed(1);
-        unit = 'km';
-      }
-      else {
-        numDist = parseInt(dist * 1000, 10);
-        unit = 'm';
-      }
-
-      return numDist + unit;
-    }
-
-    if (response.statusCode === 200 && data.length) {
-      data.forEach(function(data) {
-        data.distance = formatDistance(data.distance);
-      });
-    }
-    renderHomePage(req, res, data);
-  });
+  renderHomePage(req, res);
 }
 
 /* GET 'location info' page */

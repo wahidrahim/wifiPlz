@@ -1,24 +1,6 @@
 var mongoose = require('mongoose');
 var Location = mongoose.model('Location');
 
-// reusable functions for making distance calculations
-//var theEarth = (function() {
-//  var radius = 6371; // km
-
-//  var fromRads = function(rads) {
-//    return parseFloat(rads * radius);
-//  }
-
-//  var fromDist = function(dist) {
-//    return parseFloat(dist / radius);
-//  }
-
-//  return {
-//    getDistFromRads: fromRads,
-//    getRadsFromDist: fromDist
-//  }
-//})();
-
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
   res.json(content);
@@ -41,7 +23,7 @@ module.exports.locationsListByDistance = function(req, res) {
 
   var geoOptions = {
     spherical: true,
-    num: 10,
+    //num: 10,
     //maxDistance: (maxDistance) ? maxDistance : 50 * 1000 // 50km
     //maxDistance: (maxDistance && maxDistance > 0) ? maxDistance : 25000
     //maxDistance: 25000 // meters

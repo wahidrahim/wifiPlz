@@ -10,8 +10,7 @@ block content
     .col-xs-12.col-md-9
       .row
         .col-xs-12.col-sm-6
-          p.rating
-            + outputRating(location.rating)
+          p.rating.location-rating(rating-stars rating='location.rating')
 
           p= location.address
 

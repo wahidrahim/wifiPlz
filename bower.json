@@ -16,9 +16,8 @@
     "tests"
   ],
   "dependencies": {
-    "bootswatch-dist": "cerulean"
-  },
-  "resolutions": {
-    "bootswatch-dist": "cerulean"
+    "bootswatch-dist": "cosmo",
+    "angular": "^1.5.2",
+    "jquery-timeago": "timeago#^1.5.2"
   }
 }
